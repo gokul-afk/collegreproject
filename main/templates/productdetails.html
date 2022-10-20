@@ -1,0 +1,126 @@
+{% extends 'dashcopy.html' %}
+
+
+{% load static %}
+{% block headdash %}
+<style>
+
+.sub{
+font-family:'Quicksand', 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.item {
+  flex: 1;
+  height: 70%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  transition: flex .5s ease;
+}
+
+
+
+.item-{{pdt.id}} { 
+  background-image: url('{{ pdt.image.url }}');
+  height: 980px;
+  }
+
+.item2-{{pdt.id}} { 
+
+  background-image: url('{{ pdt.image1.url }}');
+  height: 980px;
+}
+
+
+{% for i in multi %}
+
+.iteme-{{i.id}} { 
+  background-image: url('{{ i.multimage.url }}');
+  height: 980px;
+  }
+{% endfor %}
+
+
+.bottom{
+  padding-top:  20px;
+  
+}
+
+.affix {
+  position: fixed;
+}
+
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid h-75">
+  <div class="row h-100">
+    <div class="col-9 " id="green">
+
+<div class="row mx-3">
+  <div class="col-sm-6 col-lg-6 h-100 d-inline-block p-1 pt-1">
+  <div class="item item-{{pdt.id}} ">
+    </div></div>
+
+
+
+  {% for i in multi %}
+    <div class="col-sm-6 col-lg-6 h-100 d-inline-block p-1 pt-1">
+        <div class="item iteme-{{i.id}} ">
+        </div></div>
+  {% endfor %}
+
+    <div class="col-sm-6 col-lg-6 h-100 d-inline-block p-1 pt-1">
+      <div class="item item2-{{pdt.id}} ">
+  </div></div>
+
+</div>
+</div>
+
+
+<!--Contains the main content
+    of the webpage-->
+<div class="col-3 mr-5 "style="text-align: justify;">
+  <div id="affix" class="affix ">
+  <div class="nav-item mb-2">
+    <h5 class="nav-item " style="font-weight:bold">{{pdt.name}}</h5>
+  </div>
+  <div class="nav-item mb-4">
+    <h5 class="nav-item" style="font-size:40px">Rs.{{pdt.price}}</h5>
+  </div>
+  <div class="nav-item mt-5 pt-3 mb-4" >
+    <h5 class="nav-item">{{pdt.description}}</h5>
+  </div>
+
+</div>
+    <div class="row m-0 affix" style="padding-top:200px;padding-right:10px;">
+      {% for i in sib %}
+      <div class="col-2 p-1 m-0">
+        <a href="{% url 'product_details' i.id %}">
+        <img src="{{ i.image1.url }}"  class="w-100 " style="object-fit:cover">
+        </a>
+      </div>
+
+
+
+      {% endfor %}
+    </div>
+
+<a href="{% url 'addtocart' pdt.id %}" class="btn btn-primary affix w-25" style="margin-top:350px; right:10px; height:50px;padding-top: 10px;">
+  <span class="img  mx-4">
+    <img src="{% static 'images/orderwhite.png' %}" width="22" height="20" style="margin-bottom:6px ">
+  </span>
+  Add</a>
+</div>
+</div>
+</div>
+           
+
+  
+
+{% endblock %}

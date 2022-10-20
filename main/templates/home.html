@@ -1,0 +1,109 @@
+{% extends 'dashcopy.html' %}
+
+
+{% load static %}
+{% block headdash %}
+<style>
+
+.sub{
+font-family:'Quicksand', 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.item {
+  flex: 1;
+  height: 70%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  transition: flex .5s ease;
+}
+
+
+
+.item-{{pdt.id}} { 
+  background-image: url('{{ pdt.image.url }}');
+  height: 1000px;
+  }
+
+.item2-{{pdt.id}} { 
+
+  background-image: url('{{ pdt.image1.url }}');
+  height: 1000px;
+}
+
+
+{% for i in multi %}
+
+.iteme-{{i.id}} { 
+  background-image: url('{{ i.multimage.url }}');
+  height: 1000px;
+  }
+{% endfor %}
+
+
+.bottom{
+  padding-top:  20px;
+  
+}
+
+.affix {
+  position: fixed;
+}
+
+.me{
+    font-size: smaller;
+
+}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container p-5">
+
+<div class="row mx-3">
+
+  <div class="col-12 mb-5"
+    style=" 
+      background-image: url('https://lp2.hm.com/hmgoepprod?set=width[1920],quality[80],options[limit]&source=url[https://www2.hm.com/content/dam/men_s06/september_2022/9626b/9626B-CPD3.jpg]&scale=width[global.width],height[15000],options[global.options]&sink=format[jpg],quality[global.quality]');
+      height: 700px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: none;
+      transition: flex .5s ease;
+      "
+  ></div>
+
+  <div class="col-12 my-5"
+    style=" 
+      background-image: url('https://lp2.hm.com/hmgoepprod?source=url[https://www2.hm.com/content/dam/TOOLBOX/LOCAL%20ACTIVITIES/2021_s04/oktober/DE_Banner_1920x640_2.jpg]&scale=size[960]&sink=format[jpeg],quality[80]');
+      height: 200px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: none;
+      transition: flex .5s ease;
+      "
+  ></div>
+  <div class="col-12 my-5"
+  style=" 
+    background-image: url('https://image.hm.com/content/dam/TOOLBOX/LOCAL%20ACTIVITIES/2022_s06/septemer_2022/9626-diwali/9626-diwali-celeb-3x2-16.png?imwidth=1536%201536w');
+    height: 800px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: none;
+    transition: flex .5s ease;
+    "
+></div>
+  
+
+
+
+
+
+
+</div>         
+</div>
+{% endblock %}

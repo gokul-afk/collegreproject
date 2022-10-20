@@ -1,0 +1,13 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #000000, 
+);
+$navbar-light-color: rgba($primary, .5);
+$navbar-light-hover-color: rgba($primary, .7);
+$navbar-light-active-color: rgba($primary, .9);
+$link-color:                theme-color("primary") !default;
+$link-hover-color:          darken($link-color, 15%) !default;
+
+@import "node_modules/bootstrap/scss/bootstrap";

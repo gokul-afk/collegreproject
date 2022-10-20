@@ -1,0 +1,438 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  {% block headdash %}
+  {% endblock %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family==Raleway:wght@700&display=swap">
+	<!-- import bootstrap cdn-->
+	<link rel="stylesheet" type="text/css" href="{% static 'home/main1.css' %}"/>
+
+	<!-- import jquery cdn -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+	</script>
+	<!-- import popper.js cdn -->
+	<script src= "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"	integrity= "sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous">
+	</script>
+	<!-- import javascript cdn -->
+	<script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity=
+"sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous">
+	</script>
+	<!-- CSS stylesheet -->
+	<style type="text/css">
+		
+		#green {
+			height: 100%;
+			text-align: left;
+			color: black;
+      padding-left: 20px;
+      font-family:'Quicksand', 'Roboto', sans-serif;
+      font-size:15px;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+		}
+    .gbmenu {
+          letter-spacing: 1px;
+          color: #39000033;
+          -webkit-font-smoothing: antialiased;
+          vertical-align: middle;
+          font-family:'Quicksand', 'Roboto', sans-serif;
+          font-style:italic;
+          font-size:25px;
+          font-weight:bold;
+        }
+      
+        .nav-linkm{
+          color:rgb(0, 0, 0);
+        }
+
+#mynav {
+  overflow: hidden;
+  background-color: white;
+  padding: 30px 10px;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+.sticky {
+  position: fixed;
+  top:0;
+  padding-top:  20px;
+}
+{% if request.user.is_authenticated %}
+.fa-user{
+  color:rgb(0, 0, 0);
+}
+{% else %}
+.fa-user{
+  color:red;
+}
+
+{% endif %}
+	</style>
+</head>
+<body>
+	<!-- top navbar -->
+  <div id="navbar" style="margin-top:30px; ">
+    <nav class="navbar navbar-expand-md navbar-collaps-sm navbar-light mynav" >
+    <div class="container-fluid justify-content-between">
+      <a class="nav-link" href="{% url 'bag' %}">
+        <span class="img  mx-4">
+          <img src="{% static 'images/download.png' %}" width="100"  border="0">
+        </span>
+      </a>
+      
+
+      
+      <!-- Center elements -->
+      <div class="collapse navbar-collapse d-md-flex justify-content-center" id="collapsibleNavbar">
+      <ul class="navbar-nav  ">
+  
+        <li class="nav-item me-3 me-lg-1 text-uppercase gbmenu mx-4">
+          <a class="nav-link nav-linkm" href="#">
+            New
+          </a>
+        </li>
+  
+        <li class="nav-item me-3 me-lg-1 text-uppercase gbmenu mx-4">
+          <a class="nav-link nav-linkm" href="{% url 'woman' 'women' %}">
+            Woman
+          </a>
+        </li>
+  
+        <li class="nav-item me-3 me-lg-1 text-uppercase gbmenu mx-4">
+          <a class="nav-link nav-linkm" href="{% url 'men' 'men'%}">
+            Man
+          </a>
+        </li>
+  
+        <li class="nav-item me-3 me-lg-1 text-uppercase gbmenu mx-4">
+          <a class="nav-link nav-linkm" href="#">
+            Kids
+          </a>
+        </li>
+
+        <li class="nav-item me-3 me-lg-1 text-uppercase gbmenu mx-4">
+          <a class="nav-link nav-linkm" href="{% url 'home' %}">
+            Home
+          </a>
+        </li>
+  
+        <li class="nav-item me-3 me-lg-1 text-uppercase gbmenu   mx-4">
+          <a class="nav-link nav-linkm" href="#">
+            Originals
+          </a>
+        </li>
+  
+        <li class="nav-item me-3 me-lg-1 d-none d-md-flex mx-4">
+          <a class="nav-link"
+          {% if request.user.is_authenticated %}
+          href="{% url 'bag' %}"
+          {%else%}
+            href="#"
+            data-target="#exampleModalCenter"
+            role="button"
+            aria-expanded="false"
+            data-toggle="modal"
+            {%endif%}>
+            <span class="img">
+              <img src="//cdn.shopify.com/s/files/1/0518/4828/2276/t/6/assets/cart_2x.png?v=181602879359248358331624520048" width="22" height="20" border="0">
+            </span>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown me-3 me-lg-1 d-none d-md-flex mr-4 pr-4">
+          <a
+            class="nav-link hidden-arrow"
+            {% if request.user.is_authenticated %}
+            href="{% url 'wishlist' %}"
+            {%else%}
+            href="#"
+            data-target="#exampleModalCenter"
+            role="button"
+            aria-expanded="false"
+            data-toggle="modal"
+            {%endif%}
+          >
+          <span class="img">
+            <img src="{% static 'images/wishlist.png' %}" width="22" height="20">
+          </span>
+          </a>
+        </li>
+  
+  
+        <li class="nav-item dropdown me-3 me-lg-1 d-none d-md-flex md-px-4 md-ml-4" style="padding-top: 2px;">
+          <a
+            class="nav-link hidden-arrow"
+            {% if request.user.is_authenticated %}
+            href="{% url 'showorders' %}"
+            
+            {%else%}
+            href="#"
+            data-target="#exampleModalCenter"
+            role="button"
+            aria-expanded="false"
+            data-toggle="modal"
+            {%endif%}
+
+          >
+          <span class="img ">
+            <i class="fa fa-user" style="font-size:25px;"></i>
+          </span>
+          </a>
+        </li>
+  
+  
+  
+      </ul>
+      </div>
+      <!-- Center elements -->
+  
+    </div>
+  </nav>
+  </div>
+  <div style="margin-top:60px;">
+  
+
+
+  
+	<!-- This container contains the sidebar
+			and main content of the page -->
+	<!-- h-100 takes the full height of the body-->
+	<div class="container-fluid h-75">
+		<div class="row h-100">
+			<div class="col-2" id="green">
+        <div class="nav-item mb-4">
+				<h5 class="nav-item h5 " style="font-weight:bolder">New Arrival</h5>
+				<!-- Navigation links in sidebar-->
+				<a href="#" class="nav-link mt-1">View All</a>
+        <a href="#" class="nav-link mt-1">Clothes</a>
+        <a href="#" class="nav-link mt-1">Shoes & Accessories</a>
+      </div>
+      <div class="nav-item mb-4">
+				<h5 class="nav-item" style="font-weight:bolder">Shop by lookback</h5>
+				<!-- Navigation links in sidebar-->
+				<a href="#" class="nav-link mt-1">Casual</a>
+        <a href="#" class="nav-link mt-1">Smart</a>
+        <a href="#" class="nav-link mt-1">Street</a>
+      </div>
+      <div class="nav-item mb-4" >
+				<h5 class="nav-item" style="font-weight:bolder">Trending Now</h5>
+				<!-- Navigation links in sidebar-->
+				<a href="#" class="nav-link mt-1">Elevated Basis</a>
+        <a href="#" class="nav-link mt-1">Matching sets</a>
+        <a href="#" class="nav-link mt-1">Music, Movies & Logos</a>
+        <a href="#" class="nav-link mt-1">Layer up: Overshirts</a>
+      </div>
+      {% block sidenav %}
+
+
+
+            
+      {% endblock %}
+			</div>
+
+
+			<!--Contains the main content
+					of the webpage-->
+			<div class="col-10 "style="text-align: justify; ">
+      {% block content %}
+
+
+
+            
+      {% endblock %}
+			</div>
+		</div>
+	</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="p-2 m-1 bg-light justify-content-center ">
+            
+            
+            
+            <div class="container  " style="width:100%;">
+                
+            <ul class="nav nav-pills nav-justified nav-pills-primary mb-3" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false">
+                        Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">
+                        Register
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active" id="link1" aria-expanded="true">
+                    <form method='post' class='post-form form' action="{% url 'login' %}">
+                        {% csrf_token %}
+                
+                      
+                
+                      <!-- User Name input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="loginName">Username</label>
+                        <input type="text" id="loginName" placeholder="Username" class="form-control" name="username" />
+                      </div>
+                
+                      <!-- Password input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="loginPassword">Password</label>
+                        <input type="password" placeholder="Password" id="loginPassword" class="form-control" name="password" />
+                      </div>
+                
+                      <!-- 2 column grid layout -->
+                      <div class="row mb-4">
+                        <div class="col-md-6 d-flex justify-content-center">
+                          <!-- Checkbox -->
+                          <div class="form-check mb-3 mb-md-0">
+                            <input class="form-check-input" type="checkbox" value="" id="loginCheck"/>
+                            <label class="form-check-label" for="loginCheck"> Remember me </label>
+                          </div>
+                        </div>
+                
+                        <div class="col-md-6 d-flex justify-content-center">
+                          <!-- Simple link -->
+                          <a href="#!">Forgot password?</a>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                      <!-- Submit button -->
+                      <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                    </div>
+                
+                      <!-- Register buttons -->
+                      <div class="text-center">
+                        <p>Not a member? <a href="#link2">Register</a></p>
+                      </div>
+                    </form>
+                </div>
+            
+                <div class="tab-pane" id="link2" aria-expanded="false">
+                    <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                  
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="registerName">First Name</label>
+                            <input type="text" id="registerName" name="first_name" class="form-control" placeholder="First Name" required>
+                        </div>
+            
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="registerLName">Last Name</label>
+                            <input type="text" id="registerLName" name="last_name" class="form-control" placeholder="Last Name">
+                        </div>
+                        
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="registerA2">Address Line1</label>
+                          <input type="text" id="registerA2" name="adrone" class="form-control" placeholder="Houseno/Flatno/Apartment">
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="registerA3">Address Line 2</label>
+                        <input type="text" id="registerA3" name="adrtwo" class="form-control" placeholder="Last Name">
+                    </div>
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="registerA4">Address Line 3</label>
+                      <input type="text" id="registerA4" name="adrthree" class="form-control" placeholder="Last Name">
+                  </div>
+
+                        <!-- Username input -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="registerUsername">Username</label>
+                          <input type="text" id="registerUsername" name="username" class="form-control" placeholder="Username" required>
+                        </div>
+
+                        <div class="form-outline mb-4 ">
+                          <label class="form-label" for="phone">Phone Number</label>
+                          <input type="number" id="phone" name="mobile" class="form-control" placeholder="Enter your mobile number" required>
+                        </div>
+                  
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="registerEmail">Email</label>
+                          <input type="email" id="registerEmail" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                  
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="registerPassword">Password</label>
+                          <input type="password" id="registerPassword" name="password" class="form-control" placeholder="Strong Password" required>
+                        </div>
+                  
+                        <!-- Repeat Password input -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                          <input type="password" id="registerRepeatPassword" name="cpassword" class="form-control" placeholder="Confirm Password" required>
+                        </div>
+            
+                        <!-- Radio Gender input -->
+                        <div class="form-outline mb-4 text-center" >
+                            <input type="radio" name="gender" id="male" value="Male">
+                            <label for="male">Male</label>
+                            <input type="radio" name="gender" id="female" value="Female">
+                            <label for="female">Female</label>
+                            <input type="radio" name="gender" id="Other" value="Female">
+                            <label for="other">Other</label>
+                        </div>
+                        <div class="text-center">
+                        <input class="form-check-input ml-5" type="checkbox" value="" id="registerCheck"
+                            aria-describedby="registerCheckHelpText" required />
+                            I have read and agree to the terms
+                          
+                        </div>
+                  
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary" style="margin-left: 40%;">Submit</button>    
+                      </form>
+                    </div>
+                
+                </div>
+            </div>
+            <!--Grid column-->
+            
+            </div>
+            <!--Grid row-->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementsByid("navbar").style.padding = "10px 10px";
+    document.getElementsByid("navbar").style.postion = "fixed";
+  } else {
+    document.getElementsByid("navbar").style.padding = "30px 10px";
+  }
+}
+    </script>  
+</body>
+</html>
